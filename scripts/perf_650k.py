@@ -1,6 +1,6 @@
 """PRD 성공 기준 3 — 65만 행 성능 측정 (합성 데이터, 도구 경로 end-to-end).
 
-사용: C:/Users/rockd/.venvs/das-hitrate/Scripts/python.exe scripts/perf_650k.py [--rows 650000] [--regen]
+사용: python scripts/perf_650k.py (프로젝트 venv) [--rows 650000] [--regen]
 
 - 합성 파일·DB·내보내기는 Google Drive 밖 %LOCALAPPDATA%\\das_hitrate_perf 에 둔다 (설계안 6장).
 - 측정 범위(설계안 9장): 업로드·저장 = 파일 읽기·검증·정규화·DB 저장 (매핑 확인 대기 제외).
@@ -151,7 +151,7 @@ def main():
         "",
         "측정 범위(설계안 9장): 업로드·저장은 파일 읽기·검증·정규화·DB 저장을 포함하고 사용자 매핑 확인 대기 시간은 제외한다. "
         "시나리오 계산은 저장된 데이터에서 집계 결과가 준비될 때까지이며 AI 설명 시간은 별도다. 데이터·DB·내보내기 파일은 "
-        f"동기화되지 않는 `{PERF_DIR}` 에 두었다.",
+        f"동기화되지 않는 `%LOCALAPPDATA%\\das_hitrate_perf` 에 두었다.",
         "",
         "## PRD 성공 기준 1·2·4·5 — 테스트로 확인",
         "",
@@ -162,7 +162,7 @@ def main():
         "| 4. 6개 비교 3클릭 | 시나리오 비교 탭: '기본 6개 세트' → '계산' (2클릭) | 통과 (브라우저 확인) |",
         "| 5. 엑셀 수식 오류 0, 합계=화면 | `tests/test_reporting.py`, `tests/test_outliers.py` (LibreOffice 재계산) | 통과 |",
         "",
-        "재실행: `C:/Users/rockd/.venvs/das-hitrate/Scripts/python.exe scripts/perf_650k.py` (파일이 있으면 생성 단계 생략, `--regen`으로 다시 생성).",
+        "재실행: `python scripts/perf_650k.py` (프로젝트 venv. 파일이 있으면 생성 단계 생략, `--regen`으로 다시 생성).",
         "",
     ]
     out_md = ROOT / "docs" / "07_PERF_650K.md"

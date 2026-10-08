@@ -1,6 +1,6 @@
 ---
 name: das
-description: DAS 히트율 시뮬레이터를 Claude Code 안에서 바로 쓴다. "DAS 기본 6개 비교해줘", "이 출고 파일 등록해줘", "24셀 20PCS면 기준보다 나아?", "히트율 KPI 보여줘", "엑셀로 내보내줘" 같은 요청, 또는 /das 로 호출. Streamlit 화면 없이 das_agent.cli 를 실행해 계산 엔진 결과(토트·OL/TOTE·PCS/TOTE·증감·엑셀 경로)를 그대로 보고한다.
+description: DAS 히트율 시뮬레이터를 Claude Code 안에서 바로 쓴다. "DAS 기본 6개 비교해줘", "이 출고 파일 등록해줘", "24셀 20PCS면 기준보다 나아?", "히트율 KPI 보여줘", "엑셀로 내보내줘" 같은 요청, 또는 /das 로 호출. Streamlit 화면 없이 das.cmd(das_agent.cli)를 실행해 계산 엔진 결과(토트·OL/TOTE·PCS/TOTE·증감·엑셀 경로)를 그대로 보고한다.
 ---
 
 # DAS 히트율 시뮬레이터 (CLI 경로)
@@ -9,14 +9,16 @@ description: DAS 히트율 시뮬레이터를 Claude Code 안에서 바로 쓴�
 
 ## 실행 환경
 
-```
-PY  = C:/Users/rockd/.venvs/das-hitrate/Scripts/python.exe
-CWD = G:/내 드라이브/한국물류진흥재단_물류AX과정/DAS_HitRate_Agent
+프로젝트 루트 = 이 파일의 세 단계 위 폴더(`app.py`, `das.cmd`가 있는 곳). Claude Code 안에서는 **Bash 도구**로 파이썬을 직접 호출한다
+(PowerShell 도구는 `%LOCALAPPDATA%`·사용자 프로필이 샌드박스 경로로 가상화되어 앱의 실제 DB가 비어 보인다).
+
+```bash
+cd "<프로젝트 루트>" && PY=$(for c in .venv/Scripts/python.exe "$LOCALAPPDATA/DAS_HitRate_Agent/venv/Scripts/python.exe" "$USERPROFILE/.venvs/das-hitrate/Scripts/python.exe" python; do "$c" -c "import duckdb, streamlit, pandas" >/dev/null 2>&1 && { echo "$c"; break; }; done) && PYTHONIOENCODING=utf-8 "$PY" -m das_agent.cli <명령>
 ```
 
-항상 `cd "$CWD" && PYTHONIOENCODING=utf-8 "$PY" -m das_agent.cli ...` 형태로 Bash에서 실행한다.
+사용자가 직접 쓸 때(터미널·탐색기)는 `das.cmd <명령>` 하나면 된다. 같은 탐색 순서로 파이썬을 찾는다.
 
-**잠금 주의**: DuckDB는 한 프로세스만 연다. 실행 결과가 `저장소를 열 수 없습니다`면 Streamlit 앱(`run_app.bat` 또는 프리뷰 서버)이 떠 있는 것이다. 사용자에게 앱을 닫을지 묻거나, 이 세션이 띄운 프리뷰 서버라면 `preview_stop` 후 재시도한다.
+**잠금 주의**: DuckDB는 한 프로세스만 연다. 결과가 `저장소를 열 수 없습니다`면 Streamlit 앱(`run_app.bat`, `Start-DAS.cmd`, 프리뷰 서버)이 떠 있는 것이다. 사용자에게 앱을 닫을지 묻거나, 이 세션이 띄운 프리뷰 서버라면 `preview_stop` 후 재시도한다.
 
 ## 요청 → 명령
 
@@ -45,9 +47,9 @@ CWD = G:/내 드라이브/한국물류진흥재단_물류AX과정/DAS_HitRate_Ag
 ## 예시
 
 ```bash
-cd "G:/내 드라이브/한국물류진흥재단_물류AX과정/DAS_HitRate_Agent" && PYTHONIOENCODING=utf-8 C:/Users/rockd/.venvs/das-hitrate/Scripts/python.exe -m das_agent.cli compare --export
+PYTHONIOENCODING=utf-8 "$PY" -m das_agent.cli compare --export
 ```
 
 ```bash
-cd "G:/내 드라이브/한국물류진흥재단_물류AX과정/DAS_HitRate_Agent" && PYTHONIOENCODING=utf-8 C:/Users/rockd/.venvs/das-hitrate/Scripts/python.exe -m das_agent.cli ask "셀을 절반으로 줄이고 토트 25개면 기준 대비 어때?" --llm claude
+PYTHONIOENCODING=utf-8 "$PY" -m das_agent.cli ask "셀을 절반으로 줄이고 토트 25개면 기준 대비 어때?" --llm claude
 ```

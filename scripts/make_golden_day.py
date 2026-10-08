@@ -1,6 +1,6 @@
 """sample_data/ 에 1일치 합성 정답 데이터와 엑셀 수작업 정답 통합문서를 만든다.
 
-사용: C:/Users/rockd/.venvs/das-hitrate/Scripts/python.exe scripts/make_golden_day.py
+사용: python scripts/make_golden_day.py (프로젝트 venv)
 생성물은 모두 합성 데이터이며 실제 출고 실적이 아니다.
 """
 import sys

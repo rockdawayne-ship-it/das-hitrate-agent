@@ -17,7 +17,7 @@
 | 방법 | 어떻게 |
 |---|---|
 | 더블클릭 실행 | `run_app.bat` 또는 바탕화면 바로가기 "DAS 히트율 시뮬레이터". 서버를 띄우고 브라우저를 연다. 창을 닫으면 종료 |
-| 명령줄 (CLI) | `python -m das_agent.cli datasets / register <파일> / kpi / compare [--export] / ask "<요청>" [--llm claude]`. `--json`으로 기계 판독 출력 |
+| 명령줄 (CLI) | `das.cmd datasets / register <파일> / kpi / compare [--export] / ask "<요청>" [--llm claude]`. `--json`으로 기계 판독 출력 |
 | Claude Code 스킬 | 이 폴더에서 `claude` 실행 후 `/das 기본 6개 비교해줘`. 스킬이 CLI를 호출해 엔진 결과를 그대로 보고 (`.claude/skills/das/SKILL.md`) |
 | 사내 공유 | 내 PC에서 실행 중이면 같은 네트워크에서 `http://<내 PC IP>:8502`. 방화벽 8502 인바운드 허용. 로그인이 없으니 신뢰 네트워크에서만 |
 
@@ -28,7 +28,7 @@ DuckDB는 한 프로세스만 연다. 앱이 떠 있으면 CLI는 `저장소를 
 추천 파일 경로:
 
 ```text
-C:\Users\rockd\DAS_Data\input\data.xlsx
+%USERPROFILE%\DAS_Data\input\data.xlsx
 ```
 
 입력 폴더는 생성되어 있습니다. 파일을 이 위치에 넣으면 **추천 폴더의 data.xlsx 불러오기** 버튼으로 읽을 수 있습니다. 다른 위치의 파일도 업로드할 수 있습니다.
@@ -99,7 +99,7 @@ claude auth status
 | 소스·설계 문서 | 현재 DAS_HitRate_Agent 폴더 |
 | 원본 업로드 사본·DuckDB·엑셀 결과 | %LOCALAPPDATA%\das_hitrate |
 | 실행 환경·서버 로그·검증 기록 | %LOCALAPPDATA%\DAS_HitRate_Agent |
-| 실제 입력 권장 폴더 | C:\Users\rockd\DAS_Data\input |
+| 실제 입력 권장 폴더 | %USERPROFILE%\DAS_Data\input |
 
 운영 데이터는 Google Drive 작업 폴더에 자동 저장하지 않습니다. 사용자가 다운로드 위치로 동기화 폴더를 선택하는 경우에는 해당 폴더의 동기화 설정이 적용됩니다. Windows Store 방식 Codex 실행 환경에서는 앱 데이터 경로가 패키지의 LocalCache로 리디렉션될 수 있으며, 실제 경로는 사이드바의 **저장 위치·계산 버전**에서 확인할 수 있습니다.
 

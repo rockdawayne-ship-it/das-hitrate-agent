@@ -1,6 +1,6 @@
 @echo off
-rem DAS HitRate Simulator - double-click launcher (no terminal needed)
-rem Starts Streamlit from this folder and opens the browser. Close this window to stop.
+rem DAS CLI wrapper: finds a working Python env (duckdb+streamlit+pandas) and forwards all args to das_agent.cli
+rem usage: das.cmd datasets | register <file> | kpi | compare [--export] | ask "<text>" [--llm claude]
 setlocal
 chcp 65001 >nul
 cd /d "%~dp0"
@@ -12,13 +12,9 @@ call :try "%USERPROFILE%\.venvs\das-hitrate\Scripts\python.exe"
 call :try python
 if "%PY%"=="" (
   echo [DAS] No Python environment with duckdb/streamlit/pandas found. See README.md "run" section.
-  pause
   exit /b 1
 )
-if "%DAS_LLM%"=="" set "DAS_LLM=ollama"
-echo [DAS] starting on http://localhost:8502  (DAS_LLM=%DAS_LLM%, python=%PY%)
-start "" "http://localhost:8502"
-"%PY%" -m streamlit run app.py --server.port 8502 --server.headless true --browser.gatherUsageStats false
+"%PY%" -m das_agent.cli %*
 exit /b %ERRORLEVEL%
 
 :try

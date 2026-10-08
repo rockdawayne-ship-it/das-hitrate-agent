@@ -62,4 +62,4 @@
 - 특이일을 AVG에서 제외하는 옵션은 후속 기능
 - 외부 자유 대화 API 연결은 후속 단계. 확장 지점은 `04_API_EXTENSION.md` 참조
 
-운영 입력 권장 위치는 `C:\Users\rockd\DAS_Data\input\data.xlsx`이다. 현재 이 경로에는 실제 출고 파일을 만들거나 복사하지 않았다.
+운영 입력 권장 위치는 `%USERPROFILE%\DAS_Data\input\data.xlsx`이다. 현재 이 경로에는 실제 출고 파일을 만들거나 복사하지 않았다.
