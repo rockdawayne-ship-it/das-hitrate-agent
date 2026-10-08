@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.fablize/
+*.duckdb
+*.duckdb.wal
+.env
+.streamlit/secrets.toml
+.claude/settings.local.json
+.claude/worktrees/
+exports/
+uploads/
+*.log

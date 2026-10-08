@@ -1,0 +1,136 @@
+[
+  {
+    "question": "셀을 두 배로 늘리면 어떻게 돼?",
+    "passed": true,
+    "model": "qwen3:30b-a3b",
+    "checked_at": "2026-10-07T04:37:38.420532+00:00",
+    "elapsed_seconds": 1.827,
+    "api_metrics": {
+      "model": "qwen3:30b-a3b",
+      "total_duration": 1773628800,
+      "load_duration": 5755000,
+      "prompt_eval_count": 570,
+      "prompt_eval_duration": 189194000,
+      "eval_count": 234,
+      "eval_duration": 1573011000,
+      "done_reason": "stop"
+    },
+    "plan": {
+      "action": "compare",
+      "scenarios": [
+        {
+          "name": null,
+          "cells": 16,
+          "tote_capacity": 15,
+          "order_unit": "배송처차수",
+          "hours_per_day": 10
+        },
+        {
+          "name": null,
+          "cells": 32,
+          "tote_capacity": 15,
+          "order_unit": "배송처차수",
+          "hours_per_day": 10
+        }
+      ],
+      "include_baseline": true,
+      "filters": {
+        "start": null,
+        "end": null,
+        "category": null
+      },
+      "date": null,
+      "message": "16셀 → 32셀로 확장 시 히트율 및 작업 효율 비교",
+      "source": "llm",
+      "clear_filters": []
+    },
+    "reply": "기준 '기준' (DAS 16셀 · 토트 15PCS · 배송처차수 · 10h), 적용 범위 전체, 출고일 1일.\n기준 결과: 총 토트 5 / OL/TOTE 1.00 / PCS/TOTE 9.40 / tote/h 1.\n- '32셀·15PCS': 총 토트 5 (+0, +0.0%), OL/TOTE 1.00 → 1.00, PCS/TOTE 9.40, tote/h 1.\n총 토트 최소 동률: '기준', '32셀·15PCS' (5)."
+  },
+  {
+    "question": "셀 수를 현재의 세 배로 바꾸고 토트는 그대로 유지하면?",
+    "passed": true,
+    "model": "qwen3:30b-a3b",
+    "checked_at": "2026-10-07T04:37:40.070420+00:00",
+    "elapsed_seconds": 1.65,
+    "api_metrics": {
+      "model": "qwen3:30b-a3b",
+      "total_duration": 1612243300,
+      "load_duration": 7495800,
+      "prompt_eval_count": 578,
+      "prompt_eval_duration": 43718000,
+      "eval_count": 232,
+      "eval_duration": 1554810000,
+      "done_reason": "stop"
+    },
+    "plan": {
+      "action": "compare",
+      "scenarios": [
+        {
+          "name": null,
+          "cells": 16,
+          "tote_capacity": 15,
+          "order_unit": "배송처차수",
+          "hours_per_day": 10
+        },
+        {
+          "name": null,
+          "cells": 48,
+          "tote_capacity": 15,
+          "order_unit": "배송처차수",
+          "hours_per_day": 10
+        }
+      ],
+      "include_baseline": true,
+      "filters": {
+        "start": null,
+        "end": null,
+        "category": null
+      },
+      "date": null,
+      "message": "16셀 → 48셀로 변경, 토트 15PCS 유지",
+      "source": "llm",
+      "clear_filters": []
+    },
+    "reply": "기준 '기준' (DAS 16셀 · 토트 15PCS · 배송처차수 · 10h), 적용 범위 전체, 출고일 1일.\n기준 결과: 총 토트 5 / OL/TOTE 1.00 / PCS/TOTE 9.40 / tote/h 1.\n- '48셀·15PCS': 총 토트 5 (+0, +0.0%), OL/TOTE 1.00 → 1.00, PCS/TOTE 9.40, tote/h 1.\n총 토트 최소 동률: '기준', '48셀·15PCS' (5)."
+  },
+  {
+    "question": "토트 용량을 지금의 두 배로 늘려서 비교해줘",
+    "passed": true,
+    "model": "qwen3:30b-a3b",
+    "checked_at": "2026-10-07T04:37:41.409510+00:00",
+    "elapsed_seconds": 1.339,
+    "api_metrics": {
+      "model": "qwen3:30b-a3b",
+      "total_duration": 1289936600,
+      "load_duration": 5898700,
+      "prompt_eval_count": 575,
+      "prompt_eval_duration": 47729000,
+      "eval_count": 184,
+      "eval_duration": 1229193000,
+      "done_reason": "stop"
+    },
+    "plan": {
+      "action": "compare",
+      "scenarios": [
+        {
+          "name": null,
+          "cells": 16,
+          "tote_capacity": 30,
+          "order_unit": "배송처차수",
+          "hours_per_day": 10
+        }
+      ],
+      "include_baseline": true,
+      "filters": {
+        "start": null,
+        "end": null,
+        "category": null
+      },
+      "date": null,
+      "message": "토트 용량 15PCS → 30PCS로 변경, 기준(16셀×15PCS)과 비교",
+      "source": "llm",
+      "clear_filters": []
+    },
+    "reply": "기준 '기준' (DAS 16셀 · 토트 15PCS · 배송처차수 · 10h), 적용 범위 전체, 출고일 1일.\n기준 결과: 총 토트 5 / OL/TOTE 1.00 / PCS/TOTE 9.40 / tote/h 1.\n- '16셀·30PCS': 총 토트 3 (-2, -40.0%), OL/TOTE 1.00 → 1.67, PCS/TOTE 15.67, tote/h 1.\n총 토트가 가장 적은 설정: '16셀·30PCS' (3). 설비 비용·인원은 이 비교에 포함되지 않는다."
+  }
+]
